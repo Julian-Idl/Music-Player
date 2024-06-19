@@ -1,0 +1,70 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:"slnt" 0;
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.album-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.album-cover {
+    width: 250px;
+    height: 250px;
+    margin-right: 20px;
+}
+
+.album-details h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.album-details h2 {
+    margin: 5px 0;
+    font-size: 1.5em;
+    color: #bbbbbb9d;
+}
+
+.album-details p {
+    font-size: 1em;
+    color: #bbbbbb6b;
+}
+
+.tracklist {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:"slnt" 0;
+    font-weight: 700;
+}
+
+.tracklist th, .tracklist td {
+    padding: 10px;
+    border-bottom: 1px solid #2a2929;
+    text-align: left;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.tracklist th {
+    background-color: #1f1f1f;
+}
+
+.tracklist tr:hover {
+    background-color: #1f1f1f;
+    transform: scale(1.02);
+}
