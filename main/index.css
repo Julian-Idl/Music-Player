@@ -22,7 +22,7 @@ body, html {
 
 }
 .body{
-    background-color: #3c3c4473;
+    background: linear-gradient(to bottom,  #3c3c4473,  #85859473, #23232673);
     font-weight: 800;
     flex: 1 1 auto;
     overflow-y: auto;
