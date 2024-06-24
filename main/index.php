@@ -1,6 +1,24 @@
+<?php
+session_start();
+
+if (isset($_COOKIE['username']) && !isset($_SESSION['username'])) {
+    // Load users from the file
+    $users = json_decode(file_get_contents('users.json'), true);
+    
+    $username = $_COOKIE['username'];
+    if (isset($users[$username])) {
+        $_SESSION['username'] = $username;
+    }
+}
+
+if (!isset($_SESSION['username'])) {
+    header("Location: login.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-    <?php echo "welcome to Music Player" ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

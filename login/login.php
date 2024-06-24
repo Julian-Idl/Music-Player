@@ -11,12 +11,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     $remember = isset($_POST['remember']);
 
-    if (isset($users[$username]) && password_verify($password, $users[$username])) {
+    if (isset($users[$username]) && password_verify($password, $users[$username]['password'])) {
         $_SESSION['username'] = $username;
+        
         if ($remember) {
-            setcookie('username', $username, time() + (86400 * 30), "/");
+            // Set a cookie for 30 days
+            setcookie('username', $username, time() + (86400 * 30), "/", "", true, true);
         }
-        header("Location: ../main/index.html"); // Redirect to a welcome page
+        
+        // Redirect to the welcome page
+        header("Location: ..\main\index.php");
         exit();
     } else {
         $error = "Invalid username or password.";

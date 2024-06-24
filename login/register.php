@@ -1,4 +1,5 @@
 <?php
+session_start();
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -21,12 +22,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($users[$username])) {
             $error = "Username already exists. Please choose a different username.";
         } else {
-            // Store the new user
-            $users[$username] = $hashed_password;
+            // Store the new user with basic preference data
+            $users[$username] = [
+                'password' => $hashed_password,
+                'preferences' => [] // Example field for storing user preferences
+            ];
             file_put_contents('users.json', json_encode($users));
             
+            // Create a session for the user
+            $_SESSION['username'] = $username;
+            
             // Redirect to the welcome page after successful registration
-            header("Location: ../main/index.html");
+            header("Location: ..\main\index.php");
             exit();
         }
     }
