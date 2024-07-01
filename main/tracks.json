@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Faith",
+        "artist": "The Weeknd",
+        "album": "After Hours",
+        "preview_url": "tracks/faith.mp3",
+        "image_url": "cover/faith.jpg",
+        "tags": ["pop", "synthwave"]
+    },
+    {
+        "name": "Blinding Lights",
+        "artist": "The Weeknd",
+        "album": "After Hours",
+        "preview_url": "tracks/blinding lights.mp3",
+        "image_url": "cover/blinding lights.jpg",
+        "tags": ["pop", "synthwave"]
+    }
+    
+]

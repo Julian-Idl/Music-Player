@@ -1,0 +1,272 @@
+.sidebar{
+    background-color: #212124;
+    transition: width 0.3s;
+    font-weight: 600;
+    position: relative;
+    padding-left: 5px;
+}
+.userphoto{
+    position: absolute;
+    top: 10px;
+}
+.sidebar .bars{
+    right: 20px;
+    position: absolute;
+    top: 20px;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+.body{
+    background: linear-gradient(to bottom,  #3c3c4473,  #8585948b), url('images/artist.jpg') no-repeat center center/cover;
+}
+.sidebar{
+    position: fixed;
+    width: 275px;
+    height: 100%;
+}
+.profile{
+    margin: 20px 0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    border-radius: 8px;
+    padding-right: 25px;
+    padding-left: 25px;
+}
+.menu a, .collection a{
+    text-decoration: none;
+    color: white;
+}
+.menu a:hover, .collection a:hover{
+    color: #1db954;
+}
+.menu, .collection, .albums{
+    color: #b3b3b3;
+    padding: 10px 30px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+.collection span{
+    display: block;
+    margin-top: 30px;
+}
+.collection p, .albums p{
+    margin-bottom: 25px;
+    margin-top: 50px;
+}
+.collection span a{
+    margin-left: 25px;
+}
+.albums a{
+    display: block;
+    margin-top: 30px;
+    text-decoration: none;
+    color: #b3b3b3;
+}
+.albums a:hover{
+    color: #1db954;
+}
+.header{
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    align-items: center;
+}
+.controls i{
+    margin: 20px 10px;
+}
+.navigation i{
+    margin: 20px 10px;
+}
+.navigation i:hover{
+    cursor: pointer;
+    color: #1db954;
+}
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+.search input {
+    width: 70%;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    background-color: #404040;
+    color: white;
+    text-align: center;
+    margin-right: 10px;
+}
+.search button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+}
+/* Ensure the search results dropdown overlaps other content */
+.search-results {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    max-height: 300px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+.search-results .track img {
+    width: 10px;
+    height: 10px;
+
+}
+
+.search-results .track {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.search-results .track-details {
+    margin-left: 10px;
+    flex-grow: 1;
+}
+
+.search-results .track-details .track-name {
+    font-weight: bold;
+}
+
+.search-results .track-details .track-artist {
+    color: #666;
+}
+
+.search-results .play-button {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.search-results .play-button i {
+    font-size: 1.5em;
+}
+
+.recomended{
+    margin: 20px 40px;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+}
+.title i{
+    margin: 0 10px;
+}
+.track-info i{
+    margin: 5px 0;
+}
+.direction{
+    color: white;
+}
+.direction i:hover{
+    cursor: pointer;
+}
+.track{
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    color: white;
+}
+.track img{
+    height: 50px;
+    margin-right: 10px;
+}
+.track-details{
+    flex-grow: 1;
+}
+.track-name{
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+.play-button{
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+.play-button i{
+    font-size: 1.5rem;
+}
+.controller{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #212124;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.controller img{
+    height: 50px;
+}
+.player-left{
+    display: flex;
+    align-items: center;
+}
+.track-info{
+    margin-left: 10px;
+}
+.track-title{
+    font-size: 1.2rem;
+}
+.track-artist{
+    font-size: 1rem;
+    color: #b3b3b3;
+}
+.track-album{
+    font-size: 0.9rem;
+    color: #b3b3b3;
+}
+.player-center{
+    display: flex;
+    align-items: center;
+}
+.player-btn{
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin: 0 5px;
+}
+.track-duration{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+.track-duration span{
+    margin: 0 5px;
+}
+#seekbar{
+    width: 200px;
+    margin: 0 10px;
+}
+.player-right{
+    display: flex;
+    align-items: center;
+}

@@ -68,3 +68,40 @@ body {
     background-color: #1f1f1f;
     transform: scale(1.02);
 }
+
+.search-results .track img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.search-results .track {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.search-results .track-details {
+    margin-left: 10px;
+    flex-grow: 1;
+}
+
+.search-results .track-details .track-name {
+    font-weight: bold;
+}
+
+.search-results .track-details .track-artist {
+    color: #666;
+}
+
+.search-results .play-button {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.search-results .play-button i {
+    font-size: 1.5em;
+}
