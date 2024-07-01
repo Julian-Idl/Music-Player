@@ -48,20 +48,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Register</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
+            background-color: #2b2b30;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            font-family: "Inter", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+            font-variation-settings:"slnt" 0;
+            font-weight: bold;
         }
         .container {
-            background-color: white;
+            background-color: #12121673;
+            border: 1px;
+            color: whitesmoke ;
+            border-color: #ccc;
             padding: 20px;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(162, 159, 159, 0.1);
             width: 300px;
         }
         h2 {
@@ -73,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             margin-bottom: 10px;
         }
         input[type=text], input[type=password] {
-            width: 100%;
+            width: 90%;
             padding: 10px;
             margin: 5px 0 10px 0;
             display: inline-block;
@@ -82,20 +87,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         input[type=submit] {
             width: 100%;
-            background-color: #4CAF50;
+            font-family: "Inter", sans-serif;
+            font-optical-sizing:auto;
+            font-variation-settings:"slnt" 0;
+            background-color: #2b2b30;
             color: white;
             padding: 10px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            transition: color 0.3s, transform 0.3s;
         }
         input[type=submit]:hover {
-            background-color: #45a049;
+            background-color: #676a68;
+            transform: scale(1.01);
         }
         .link {
             display: block;
             text-align: center;
             margin-top: 10px;
+            font-family: "Inter", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+            font-variation-settings:"slnt" 0;
+            background-color: #2b2b30;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: color 0.3s, transform 0.3s;
+            text-decoration: none;
+        }
+        .link:hover{
+            background-color: #676a68;
+            transform: scale(1.01);
         }
         .toggle-password {
             display: flex;
