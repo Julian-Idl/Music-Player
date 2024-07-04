@@ -80,8 +80,7 @@ if (!isset($_SESSION['username'])) {
             </div>
             <div class="controls">
                 <i class="fas fa-chevron-left"></i>
-                <i class="fas fa-chevron-right"></i>
-            </div>
+                <i class="fas fa-chevron-right"></i></div>
         </div>
         <div class="content-wrapper"> <!-- New parent container -->
             <div id="searchResults" class="search-results"></div> <!-- Search results container -->
@@ -95,19 +94,19 @@ if (!isset($_SESSION['username'])) {
                 </div>
                 <!-- Sample recommended content -->
                 <div class="recommended-content">
-                    <p>This is some recommended content.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla feugiat odio ut feugiat tincidunt. Proin sed justo sit amet mi luctus commodo et vitae magna. Donec ac eros eget neque consequat faucibus.</p>
+                    <p></p>
+                    <p></p>
                 </div>
             </div>
         </div>
     </div>
     <div class="controller">
         <div class="player-left">
-            <img src="cover/blinding lights.jpg" alt="Currently Playing" id="trackImage">
+            <img src="images/music.png" alt="Currently Playing" id="trackImage">
             <div class="track-info">
-                <div class="track-title" id="trackTitle">Faith <i class="fas fa-heart"></i> <i class="fas fa-heart-broken hide"></i> <i class="fas fa-ellipsis-h"></i></div>
-                <div class="track-artist" id="trackArtist">The Weeknd</div>
-                <div class="track-album" id="trackAlbum">After Hours</div>
+                <div class="track-title" id="trackTitle">Track <i class="fas fa-heart"></i> <i class="fas fa-heart-broken hide"></i> <i class="fas fa-ellipsis-h"></i></div>
+                <div class="track-artist" id="trackArtist">Artist</div>
+                <div class="track-album" id="trackAlbum">Album</div>
             </div>
         </div>
         <div class="player-center">
@@ -117,7 +116,7 @@ if (!isset($_SESSION['username'])) {
             <button class="player-btn" id="nextButton"><i class="fas fa-step-forward"></i></button>
             <button class="player-btn" id="repeatButton"><i class="fas fa-redo"></i></button>
             <div class="track-duration">
-                <span id="current-time">0:00</span> / <span id="total-time">4:05</span>
+                <span id="current-time">0:00</span> / <span id="total-time">0:00</span>
             </div>
             <input type="range" id="seekbar" min="0" max="100" value="0">
         </div>
@@ -132,6 +131,7 @@ if (!isset($_SESSION['username'])) {
         let currentAudio = null;
         let currentTrackIndex = 0;
         let currentTrackList = [];
+        let filteredTrackList = []; // To store filtered tracks
 
         // Load tracks from JSON file
         function loadTracks() {
@@ -168,19 +168,19 @@ if (!isset($_SESSION['username'])) {
             document.querySelectorAll('.play-button').forEach(button => {
                 button.addEventListener('click', function() {
                     const index = this.getAttribute('data-index');
-                    playTrack(index);
+                    playTrack(index, tracks); // Pass the filtered tracks to playTrack
                 });
             });
         }
 
         // Play a selected track
-        function playTrack(index) {
+        function playTrack(index, trackList) {
             currentTrackIndex = index;  // Update the current track index
 
             if (currentAudio) {
                 currentAudio.pause();
             }
-            const track = currentTrackList[index];
+            const track = trackList[index];
             currentAudio = new Audio(track.preview_url);
             currentAudio.play();
             currentAudio.addEventListener('timeupdate', updateSeekbar);
@@ -192,32 +192,9 @@ if (!isset($_SESSION['username'])) {
             document.getElementById('trackAlbum').innerText = track.album;
 
             document.getElementById('playPauseButton').innerHTML = '<i class="fas fa-pause"></i>';
-            console.log('Playing track:', track);
         }
 
-        // Update seekbar based on current audio time
-        function updateSeekbar() {
-            const currentTime = currentAudio.currentTime;
-            const duration = currentAudio.duration;
-            document.getElementById('seekbar').value = (currentTime / duration) * 100;
-            document.getElementById('current-time').innerText = formatTime(currentTime);
-            document.getElementById('total-time').innerText = formatTime(duration);
-        }
-
-        // Format time in MM:SS format
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = Math.floor(seconds % 60);
-            return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-        }
-
-        // Play the next track in the list
-        function nextTrack() {
-            currentTrackIndex = (currentTrackIndex + 1) % currentTrackList.length;
-            playTrack(currentTrackIndex);
-        }
-
-        // Event listener for play/pause button
+        // Pause or resume the current track
         document.getElementById('playPauseButton').addEventListener('click', function() {
             if (currentAudio) {
                 if (currentAudio.paused) {
@@ -230,31 +207,59 @@ if (!isset($_SESSION['username'])) {
             }
         });
 
-        // Event listener for previous button
-        document.getElementById('previousButton').addEventListener('click', function() {
-            currentTrackIndex = (currentTrackIndex - 1 + currentTrackList.length) % currentTrackList.length;
-            playTrack(currentTrackIndex);
-        });
+        // Update seekbar as the track plays
+        function updateSeekbar() {
+            if (currentAudio) {
+                const currentTime = currentAudio.currentTime;
+                const duration = currentAudio.duration;
+                const seekbar = document.getElementById('seekbar');
+                seekbar.value = (currentTime / duration) * 100;
+                document.getElementById('current-time').innerText = formatTime(currentTime);
+                document.getElementById('total-time').innerText = formatTime(duration);
+            }
+        }
 
-        // Event listener for next button
+        // Format time in mm:ss format
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        // Play the next track
         document.getElementById('nextButton').addEventListener('click', nextTrack);
 
-        // Search functionality
-        $('#searchInput').on('input', function() {
-            const searchTerm = $(this).val().toLowerCase();
-            if (searchTerm.length > 0) {
-                const filteredTracks = currentTrackList.filter(track =>
-                    track.name.toLowerCase().includes(searchTerm) ||
-                    track.artist.toLowerCase().includes(searchTerm)
-                );
-                renderTracks(filteredTracks);
-            } else {
-                $('#searchResults').removeClass('show'); // Hide search results
+        function nextTrack() {
+            currentTrackIndex = (currentTrackIndex + 1) % currentTrackList.length;
+            playTrack(currentTrackIndex, currentTrackList);
+        }
+
+        // Play the previous track
+        document.getElementById('previousButton').addEventListener('click', function() {
+            currentTrackIndex = (currentTrackIndex - 1 + currentTrackList.length) % currentTrackList.length;
+            playTrack(currentTrackIndex, currentTrackList);
+        });
+
+        // Handle volume change
+        document.getElementById('volumeSeekbar').addEventListener('input', function() {
+            if (currentAudio) {
+                currentAudio.volume = this.value / 100;
             }
         });
 
-        // Load tracks on page load
-        document.addEventListener('DOMContentLoaded', loadTracks);
+        // Perform search on input change
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            filteredTrackList = currentTrackList.filter(track =>
+                track.name.toLowerCase().includes(searchTerm) ||
+                track.artist.toLowerCase().includes(searchTerm) ||
+                track.album.toLowerCase().includes(searchTerm)
+            );
+            renderTracks(filteredTrackList);
+        });
+
+        // Load tracks initially
+        loadTracks();
     </script>
 </body>
 </html>

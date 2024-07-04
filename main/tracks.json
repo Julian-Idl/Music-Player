@@ -11,8 +11,16 @@
         "name": "Blinding Lights",
         "artist": "The Weeknd",
         "album": "After Hours",
-        "preview_url": "tracks/blinding lights.mp3",
-        "image_url": "cover/blinding lights.jpg",
+        "preview_url": "tracks/blinding_lights.mp3",
+        "image_url": "cover/blinding_lights.jpg",
+        "tags": ["pop", "synthwave"]
+    },
+    {
+        "name": "Ignite",
+        "artist": "Alan Walker",
+        "album": "Ignite",
+        "preview_url": "tracks/ignite.mp3",
+        "image_url": "cover/ignite.jpg",
         "tags": ["pop", "synthwave"]
     }
     
