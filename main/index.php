@@ -148,6 +148,10 @@ if (!isset($_SESSION['username'])) {
         function renderTracks(tracks) {
             const resultsDiv = document.getElementById('searchResults');
             resultsDiv.innerHTML = '';
+            if (tracks.length === 0) {
+                resultsDiv.classList.remove('show');
+                return;
+            }
             tracks.forEach((track, index) => {
                 const trackElement = document.createElement('div');
                 trackElement.classList.add('track');
@@ -250,6 +254,11 @@ if (!isset($_SESSION['username'])) {
         // Perform search on input change
         document.getElementById('searchInput').addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase();
+            if (searchTerm === '') {
+                // Hide the search results if the search box is empty
+                document.getElementById('searchResults').classList.remove('show');
+                return;
+            }
             filteredTrackList = currentTrackList.filter(track =>
                 track.name.toLowerCase().includes(searchTerm) ||
                 track.artist.toLowerCase().includes(searchTerm) ||
