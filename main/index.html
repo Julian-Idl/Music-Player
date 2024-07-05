@@ -65,7 +65,6 @@ if (!isset($_SESSION['username'])) {
             <a href="#">Yeezus</a>
             <a href="#">The Forever Story</a>
             <a href="#">Illmatic</a>
-            <a href="#">AstroWorld</a>
         </div>
     </div>
     <div class="body">
@@ -223,6 +222,14 @@ if (!isset($_SESSION['username'])) {
             }
         }
 
+        // Seek within the track
+        document.getElementById('seekbar').addEventListener('input', function() {
+            if (currentAudio) {
+                const seekTime = (this.value / 100) * currentAudio.duration;
+                currentAudio.currentTime = seekTime;
+            }
+        });
+
         // Format time in mm:ss format
         function formatTime(seconds) {
             const minutes = Math.floor(seconds / 60);
@@ -242,6 +249,14 @@ if (!isset($_SESSION['username'])) {
         document.getElementById('previousButton').addEventListener('click', function() {
             currentTrackIndex = (currentTrackIndex - 1 + currentTrackList.length) % currentTrackList.length;
             playTrack(currentTrackIndex, currentTrackList);
+        });
+
+        // Restart the current track
+        document.getElementById('repeatButton').addEventListener('click', function() {
+            if (currentAudio) {
+                currentAudio.currentTime = 0;
+                currentAudio.play();
+            }
         });
 
         // Handle volume change
